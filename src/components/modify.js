@@ -8,7 +8,7 @@ export default class Modify extends Component{
         return(
 
             <Container>
-                <Col xs={8}>
+                <Col xs={4}>
                     <Card>
                         <Card.Body>
                             <Form>
