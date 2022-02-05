@@ -6,7 +6,7 @@ import Tasks from './components/tasks';
 import Modify from './components/modify';
 
 ReactDOM.render( 
-    <Modify/>,
+    <Tasks/>,
   document.getElementById('root')
 );
 
