@@ -6,14 +6,14 @@ import Modify from './modify';
 
 function Tasks() {
   
-  const [arrayUser,setArrayUser]=useState([]);
+  const [arrayTask,setArrayTask]=useState([]);
   const [refresh,setRefresh]=useState([true]);
+  const urlTask="https://jsonplaceholder.typicode.com/users";
   
   const query = async () =>{
-    const urlUser="https://jsonplaceholder.typicode.com/users";
-    const queryUser = await fetch(urlUser);
-    const resUser= await queryUser.json();
-    setArrayUser(resUser)
+    const queryTask = await fetch(urlTask);
+    const resTask= await queryTask.json();
+    setArrayTask(resTask)
   }
 
   useEffect(()=>{
@@ -24,6 +24,20 @@ function Tasks() {
   })
 
   const Add = async () =>{
+    const nameTask = document.getElementById('name').value;
+    const task = {
+        name: nameTask,
+    }
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: task,
+    };
+    const result = await fetch(urlTask,options);
+    const resultMsg = await result.json();
+    alert(resultMsg);
 
   }
 
@@ -48,14 +62,14 @@ return (
             
             <Container> 
             <Row>                
-            <Col xs={10}><Form.Control type="text"/></Col>              
+            <Col xs={10}><Form.Control id="name" type="text"/></Col>              
             <Col xs={2}><Button variant="primary" onClick={Add}>Add</Button></Col>
             </Row>
             </Container>                 
           
 
             <Card.Body>
-              {arrayUser.map(user=> <Container>
+              {arrayTask.map(user=> <Container>
                                         <Row>
                                             <Col xs={2}><input type="checkbox"></input></Col>
                                             <Col xs={6}>{user.name}</Col>
