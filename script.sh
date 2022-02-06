@@ -2,14 +2,10 @@
 
 sudo apt-get update
 sudo apt-get upgrade
+sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 sudo nvm install --lts
-sudo npm install react-bootstrap bootstrap@5.1.3
 sudo install react-router --save
 sudo npm install bootstrap --save
 sudo npm install react-bootstrap bootstrap@5.1.3
-sudo npm i -g @nestjs/cli
-sudo npm install --save @nestjs/typeorm typeorm mysql2
-sudo npm run typeorm -- migration:generate -init
-sudo npm run typeorm -- migration:run
 clear
 echo Entorno ¡Prepared Environment!
