@@ -1,21 +1,20 @@
-import React, {Component} from "react";
 import {Form, Button, Container, Col, Card} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Tasks from "./tasks";
 import ReactDOM from 'react-dom';
+import Tasks from "./components/tasks";
 
-export default class Home extends Component{
-    render(){
-        
-        const Submit = async (e)=>{
-            ReactDOM.render(
-                <Tasks/>,
-                document.getElementById('root')
-            );
-        };
-        
-        return(
-            <Container>
+function App() {
+  
+    const Submit = async (e)=>{
+        ReactDOM.render(
+            <Tasks/>,
+            document.getElementById('root')
+        );
+    };
+
+return (
+
+<Container>
                 <Col xs={8}>
                     <Card>
                         <Card.Body>
@@ -39,7 +38,8 @@ export default class Home extends Component{
                     </Card>
                 </Col>
             </Container>
-            
-        )
-    }
+   
+  );
 }
+
+export default App;

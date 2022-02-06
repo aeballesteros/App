@@ -1,53 +1,63 @@
-import React, {Component} from "react";
-import ReactDOM from 'react-dom';
-
-import {ListGroup, Button, Container, Col,Row, Card} from "react-bootstrap";
+import { useEffect, useState } from 'react';
+import {Form, Button, Container, Col, Row, Card} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ReactDOM from 'react-dom';
+import Modify from './modify';
 
-export default class Tasks extends Component{
-    render(){
-        const urlTask="https://jsonplaceholder.typicode.com/users";
-        
-        return(
-            
-            fetch(urlTask)
-            .then((resp)=>resp.json())
-            .then((data)=>{
-                console.log(data);
-                const container = document.getElementById('list');
-                const template = data.map(user=>    `<div style="display: grid; grid-template-columns: repeat(4,1fr); grid-gap:1px; grid-auto-rows:50px;">
-                                                        <div >
-                                                            <input id="status" type="checkbox" onClick="Change(this)">
-                                                        </div>
-                                                        <div >
-                                                            ${user.name}
-                                                        </div>
-                                                        <div >
-                                                            <input type="button" value="Edit" onClick="Edit()">
-                                                        </div>
-                                                        <div >
-                                                            <input type="button" value="Delete" onClick="Delete()">
-                                                        </div>
-                                                    </div`);
-                container.innerHTML=`${template}`;
-            }),
+function Tasks() {
+  
+  const [arrayUser,setArrayUser]=useState([]);
+  const [refresh,setRefresh]=useState([true]);
+  
+  const query = async () =>{
+    const urlUser="https://jsonplaceholder.typicode.com/users";
+    const queryUser = await fetch(urlUser);
+    const resUser= await queryUser.json();
+    setArrayUser(resUser)
+  }
 
-            <Container>
-                <Col xs={8}>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>To-do List</Card.Title>
-                        </Card.Body>
-                    </Card>
-                    <Card>
-                        <Card.Body>
-                                <div id="list">
-                                </div>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Container>
-            
-        )
+  useEffect(()=>{
+    if(refresh){
+      query();
+      setRefresh(false);
     }
+  })
+
+  const Edit = async () =>{
+    ReactDOM.render(
+        <Modify/>,
+        document.getElementById('root')
+    );
+  }
+
+  const Delete = async () =>{
+
+  }
+
+return (
+    
+    <Container>
+    <Col xs={10}>
+        <Card>
+            <Container>
+                <Row><Card.Title>To-Do List</Card.Title></Row>
+            </Container>
+            <Card.Body>
+              {arrayUser.map(user=> <Container>
+                                        <Row>
+                                            <Col xs={2}><input type="checkbox"></input></Col>
+                                            <Col xs={6}>{user.name}</Col>
+                                            <Col xs={2}><Button variant="link" onClick={Edit}>Edit</Button></Col>
+                                            <Col xs={2}><Button variant="link" onClick={Delete}>Delete</Button></Col>
+                                        </Row>
+                                    </Container>
+              )}
+            </Card.Body>
+        </Card>
+    </Col>
+</Container>
+   
+  );
 }
+
+export default Tasks;

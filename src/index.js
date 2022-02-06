@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Home from './components/home';
-import Tasks from './components/tasks';
-import Modify from './components/modify';
+import App from './App';
+
 
 ReactDOM.render( 
-    <Tasks/>,
+    <App/>,
   document.getElementById('root')
 );
-
