@@ -1,12 +1,33 @@
-import React, {Component} from "react";
+import React from "react";
 import ReactDOM from 'react-dom';
 import {Form, Button, Container, Col, Card} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Tasks from "./tasks";
 
-function Modify(){
-    
+function Modify(props){
+
     const Save = async () =>{
+        const idTask=props.task.id;
+        const nameTask = document.getElementById('newName').value;
+        
+        const task = {
+            name: nameTask,
+        }
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(task),
+        };
+        const result = await fetch(props.urlT+"/"+ idTask,options);
+        const resultMsg = await result.json();
+
+        ReactDOM.render(
+            <Tasks/>,
+            document.getElementById('root')
+        );
+
 
       }
 
@@ -26,10 +47,10 @@ function Modify(){
                             <Form>
                                 <Form.Group>
                                 <Form.Label>Editing Task</Form.Label>
-                                <Form.Control type="text"/>
+                                <Form.Control id="newName" type="text"/>
                                 </Form.Group>
-                                <Button  type="submit">Save</Button>
-                                <Button  type="submit" onClick={Cancel}>Cancel</Button>
+                                <Button  type="primary" onClick={Save}>Save</Button>
+                                <Button  type="primary" onClick={Cancel}>Cancel</Button>
                             </Form>
                         </Card.Body>
                     </Card>
