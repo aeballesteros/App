@@ -1,6 +1,6 @@
 # IMPORTANT
 
-This repository only has frontend development. The backend development is located in the following repository: [https://github.com/aeballesteros/Ensolvers-App.git]
+This repository only has frontend development. The backend development is located in the following repository: [https://github.com/aeballesteros/Ensolvers-App-Backend.git]
 
 The main view has a home screen where you must enter a username and password, but the database does not have the corresponding tables. To skip this page you must click on the LogIn button and you will be redirected to the home page.
 
