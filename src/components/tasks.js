@@ -23,6 +23,10 @@ function Tasks() {
     }
   })
 
+  const Add = async () =>{
+
+  }
+
   const Edit = async () =>{
     ReactDOM.render(
         <Modify/>,
@@ -37,11 +41,19 @@ function Tasks() {
 return (
     
     <Container>
-    <Col xs={10}>
+
         <Card>
-            <Container>
-                <Row><Card.Title>To-Do List</Card.Title></Row>
-            </Container>
+    
+            <Card.Title>To-Do List</Card.Title>
+            
+            <Container> 
+            <Row>                
+            <Col xs={10}><Form.Control type="text"/></Col>              
+            <Col xs={2}><Button variant="primary" onClick={Add}>Add</Button></Col>
+            </Row>
+            </Container>                 
+          
+
             <Card.Body>
               {arrayUser.map(user=> <Container>
                                         <Row>
@@ -54,7 +66,7 @@ return (
               )}
             </Card.Body>
         </Card>
-    </Col>
+  
 </Container>
    
   );
