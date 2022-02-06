@@ -8,7 +8,7 @@ function Tasks() {
   
   const [arrayTask,setArrayTask]=useState([]);
   const [refresh,setRefresh]=useState([true]);
-  const urlTask="https://jsonplaceholder.typicode.com/users";
+  const urlTask="http://localhost:3000/users";
   
   const query = async () =>{
     const queryTask = await fetch(urlTask);
@@ -129,10 +129,10 @@ return (
           
 
             <Card.Body>
-              {arrayTask.map(user=> <Container>
+              {arrayTask.map(task=> <Container>
                                         <Row>
                                             <Col xs={2}><input type="checkbox" id="mark" onClick={Change}></input></Col>
-                                            <Col xs={6} id="nameTask">{user.name}</Col>
+                                            <Col xs={6} id="nameTask">{task.name}</Col>
                                             <Col xs={2}><Button variant="link" onClick={Edit}>Edit</Button></Col>
                                             <Col xs={2}><Button variant="link" onClick={Delete}>Delete</Button></Col>
                                         </Row>
