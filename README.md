@@ -1,3 +1,7 @@
+# IMPORTANT
+
+The main view has a home screen where you must enter a username and password, but the database does not have the corresponding tables. To skip this page you must click on the LogIn button and you will be redirected to the home page.
+
 # Description
 
 This project was bootstrapped with Create React App.
